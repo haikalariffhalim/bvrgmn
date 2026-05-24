@@ -1,9 +1,9 @@
 import { createFileRoute } from '@tanstack/react-router'
 
-export const Route = createFileRoute('/_kategori')({
+export const Route = createFileRoute('/ulasan/')({
   component: RouteComponent,
 })
 
 function RouteComponent() {
-  return <div>Hello "/_kategori"!</div>
+  return <div>Hello "/ulasan/"!</div>
 }
