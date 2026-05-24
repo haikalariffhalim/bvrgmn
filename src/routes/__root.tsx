@@ -1,8 +1,8 @@
 import { HeadContent, Scripts, createRootRoute } from "@tanstack/react-router";
 import { TanStackRouterDevtoolsPanel } from "@tanstack/react-router-devtools";
 import { TanStackDevtools } from "@tanstack/react-devtools";
-import Footer from "../components/Footer";
-import Header from "../components/Header";
+import Footer from "@/components/particles/site-footer";
+import Header from "@/components/particles/site-header";
 
 import ConvexClientProvider from "../providers/ConvexClientProvider";
 

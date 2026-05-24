@@ -5,9 +5,7 @@ import { Headline } from "#/components/atoms/headline";
 import { Popular } from "#/components/atoms/popular";
 import { Main } from "#/components/atoms/main";
 
-export const Route = createFileRoute("/")({
-  component: HomePage,
-});
+export const Route = createFileRoute("/")({});
 
 export function HomePage() {
   return (
