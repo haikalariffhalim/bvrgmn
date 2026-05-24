@@ -8,11 +8,16 @@ import tailwindcss from "@tailwindcss/vite";
 import { cloudflare } from "@cloudflare/vite-plugin";
 
 const config = defineConfig({
-  resolve: { tsconfigPaths: true },
+  server: {
+    port: 8080,
+  },
+  resolve: {
+    tsconfigPaths: true,
+  },
+
   plugins: [
     devtools(),
     cloudflare({ viteEnvironment: { name: "ssr" } }),
-
     tailwindcss(),
     tanstackStart(),
     viteReact(),
