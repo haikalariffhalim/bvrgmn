@@ -1,6 +1,6 @@
 # Moles 
 
-Layout page components
+Page Layout Components
 
 [] - article
 [] - priduct
