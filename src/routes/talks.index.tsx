@@ -1,13 +1,13 @@
-import { createFileRoute } from '@tanstack/react-router'
+import { createFileRoute } from "@tanstack/react-router";
 
-import { allTalks } from 'content-collections'
+import { allTalks } from "content-collections";
 
-import TalkCard from '#/components/TalkCard'
-import RemyAssistant from '#/components/RemyAssistant'
+import TalkCard from "#/components/TalkCard";
+import RemyAssistant from "#/components/assistant";
 
-export const Route = createFileRoute('/talks/')({
+export const Route = createFileRoute("/talks/")({
   component: TalksPage,
-})
+});
 
 function TalksPage() {
   return (
@@ -37,5 +37,5 @@ function TalksPage() {
         </div>
       </div>
     </>
-  )
+  );
 }

@@ -1,25 +1,25 @@
-import { createFileRoute, Link } from '@tanstack/react-router'
-import { marked } from 'marked'
-import { Clock, User, ArrowLeft, Tag } from 'lucide-react'
+import { createFileRoute, Link } from "@tanstack/react-router";
+import { marked } from "marked";
+import { Clock, User, ArrowLeft, Tag } from "lucide-react";
 
-import { allTalks, allSpeakers } from 'content-collections'
+import { allTalks, allSpeakers } from "content-collections";
 
-import RemyAssistant from '#/components/RemyAssistant'
+import RemyAssistant from "#/components/assistant";
 
-export const Route = createFileRoute('/talks/$slug')({
+export const Route = createFileRoute("/talks/$slug")({
   loader: async ({ params }) => {
-    const talk = allTalks.find((t) => t.slug === params.slug)
+    const talk = allTalks.find((t) => t.slug === params.slug);
     if (!talk) {
-      throw new Error('Talk not found')
+      throw new Error("Talk not found");
     }
-    const speaker = allSpeakers.find((s) => s.name === talk.speaker)
-    return { talk, speaker }
+    const speaker = allSpeakers.find((s) => s.name === talk.speaker);
+    return { talk, speaker };
   },
   component: TalkDetailPage,
-})
+});
 
 function TalkDetailPage() {
-  const { talk, speaker } = Route.useLoaderData()
+  const { talk, speaker } = Route.useLoaderData();
 
   return (
     <div className="min-h-screen">
@@ -110,5 +110,5 @@ function TalkDetailPage() {
         </div>
       </div>
     </div>
-  )
+  );
 }

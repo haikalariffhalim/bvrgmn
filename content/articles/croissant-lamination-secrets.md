@@ -1,8 +1,8 @@
 ---
 title: "Croissant Lamination Secrets"
-speaker: "Hans Mueller"
-duration: "150 minutes"
-image: "talks/croissant-lamination-secrets.jpg"
+author: "Hans Mueller"
+read: "5 minutes"
+image: "authors/croissant-lamination-secrets.jpg"
 topics:
   - "Croissants"
   - "Lamination"
