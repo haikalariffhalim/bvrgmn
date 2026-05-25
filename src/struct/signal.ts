@@ -8,7 +8,7 @@ export type Unlisten = () => any;
 
 export const createUnlistener =
   (removerOrRemovers: Unlisten | Unlisten[]) => () =>
-    arrayify(removerOrRemovers).forEach((r) => r());
+    arrayify(removerOrRemovers).map((r) => r());
 
 export class Signal<TData = void> {
   private listeners: SavedListener<TData>[] = [];
