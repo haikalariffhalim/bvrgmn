@@ -4,7 +4,7 @@ import { TanStackDevtools } from "@tanstack/react-devtools";
 import Footer from "@/components/particles/site-footer";
 import Header from "@/components/particles/site-header";
 
-import ConvexClientProvider from "../providers/ConvexClientProvider";
+import ConvexClientProvider from "../provider/ConvexClientProvider";
 
 import appCss from "../styles.css?url";
 
