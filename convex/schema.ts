@@ -155,6 +155,7 @@ export default defineSchema({
     slug: v.string(),
     model: v.string(),
     productCategory: v.id("productCategories"),
+    specsId: v.id("specs"),
     articleId: v.id("articles"),
     postId: v.id("posts"),
     reviewId: v.id("reviews"),
@@ -165,57 +166,32 @@ export default defineSchema({
     .index("by_post", ["postId"])
     .index("by_review", ["reviewId"]),
 
-  productSpecs: defineTable({
-    slug: v.string(),
-    title: v.string(),
-    summary: v.string(),
-    productTypeId: v.id("productTypes"),
-    productModel: v.string(),
-    specs: v.any(),
-    featuredImage: v.id("_storage"),
-    authorId: v.id("authors"),
-    authorName: v.string(),
-    category: v.array(v.id("categories")),
-    tags: v.array(v.id("tags")),
-    isDraft: v.boolean(),
-    isPublished: v.boolean(),
-    publishedAt: v.string(),
-    createdAt: v.string(),
-    updatedAt: v.string(),
-    popularity: v.number(),
-    views: v.number(),
+  specs: defineTable({
+    productCategory: v.id("productCategories"),
+    productId: v.id("products"),
+    reviewId: v.id("reviews"),
+    articleId: v.id("articles"),
+    postId: v.id("posts"),
   })
-    .index("by_slug", ["slug"])
-    .index("by_published_status", ["isPublished"])
-    .index("by_author_published", ["authorId", "isPublished"])
-    .index("by_product_type", ["productTypeId"])
-
-    .index("by_popularity", ["popularity"]),
+    .index("by_product_id_category", ["productId", "productCategory"])
+    .index("by_review", ["reviewId"])
+    .index("by_article", ["articleId"])
+    .index("by_post", ["postId"])
+    .index("by_product_id", ["productId"]),
 
   reviews: defineTable({
+    productId: v.id("products"),
+    specsId: v.id("specs"),
+    postId: v.id("posts"),
     slug: v.string(),
     title: v.string(),
-    summary: v.string(),
+
     content: v.string(),
-    productId: v.id("products"),
-    reviewAspect: v.string(),
     rating: v.number(),
     authorId: v.id("authors"),
-    authorName: v.string(),
-    category: v.array(v.id("categories")),
-    tags: v.array(v.id("tags")),
-    isDraft: v.boolean(),
-    isPublished: v.boolean(),
-    publishedAt: v.string(),
-    createdAt: v.string(),
-    updatedAt: v.string(),
-    popularity: v.number(),
-    views: v.number(),
   })
     .index("by_slug", ["slug"])
-    .index("by_published_status", ["isPublished"])
-    .index("by_author_published", ["authorId", "isPublished"])
-    .index("by_product_spec", ["productSpecId"])
-
-    .index("by_popularity", ["popularity"]),
+    .index("by_product", ["productId"])
+    .index("by_specs", ["specsId"])
+    .index("by_post", ["postId"]),
 });

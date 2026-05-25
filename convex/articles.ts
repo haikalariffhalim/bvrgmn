@@ -54,13 +54,18 @@ export const getArticlesBySlug = query({
 });
 
 export const getArticleByAuthor = query({
-  args: { authorId: v.id("authors") },
+  args: {
+    authorId: v.id("authors"),
+  },
+
   handler: async (ctx, { authorId }) => {
-    return await ctx.db
-      .query("articles")
-      .withIndex("by_authorId", (q) => q.eq("authorId", authorId))
+    const allArticles = await ctx.db
+      .query("authors")
+      .withIndex("by_articles", (q) => q.eq("articles", authorId))
       .order("desc")
       .take(10);
+
+    return allArticles;
   },
 });
 

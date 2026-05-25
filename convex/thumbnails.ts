@@ -13,7 +13,7 @@ export const addThumbnail = mutation({
     secondHeadline: v.optional(v.array(v.string())),
   },
   handler: async (ctx, args) => {
-    const thumbnail = await ctx.db.insert("thumbnails", {
+    const thumbnailId = await ctx.db.insert("thumbnails", {
       featuredImage: args.image,
       description: args.description,
       snippet: args.snippet,
@@ -25,6 +25,6 @@ export const addThumbnail = mutation({
       createdAt: Date.now(),
       updatedAt: Date.now(),
     });
-    return thumbnail;
+    return thumbnailId;
   },
 });
