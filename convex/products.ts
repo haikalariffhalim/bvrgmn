@@ -1,22 +1,16 @@
 import { mutation, query } from "./_generated/server";
 import { v, ConvexError } from "convex/values";
 
-// ============= PRODUCT SPECS MUTATIONS =============
-
-/**
- * Create a new phone product spec
- * This stores the complete phone specifications
- */
-export const createPhoneProductSpec = mutation({
+export const addProduct = mutation({
   args: {
-    title: v.string(),
-    summary: v.string(),
-    productTypeId: v.id("productTypes"),
-    productModel: v.string(),
+    name: v.string(),
+    model: v.string(),
+    category: v.id("productCategories"),
     brand: v.string(),
+    thumbnailImg: v.id("_storage"),
+
     slug: v.string(),
-    thumbnail: v.id("_storage"),
-    productImages: v.array(v.id("_storage")),
+
     announced: v.string(),
     operatingSystem: v.string(),
     variants: v.object({
@@ -26,16 +20,14 @@ export const createPhoneProductSpec = mutation({
     }),
     specs: v.any(),
     featuredImage: v.id("_storage"),
-    category: v.array(v.id("categories")),
+
     tags: v.array(v.id("tags")),
     authorId: v.id("authors"),
-    authorName: v.string(),
-    isDraft: v.boolean(),
   },
-  returns: v.id("productSpecs"),
+  returns: v.id("products"),
   handler: async (ctx, args) => {
     const existing = await ctx.db
-      .query("productSpecs")
+      .query("productId")
       .withIndex("by_slug", (q) => q.eq("slug", args.slug))
       .first();
 
@@ -45,7 +37,7 @@ export const createPhoneProductSpec = mutation({
 
     const now = new Date().toISOString();
 
-    return await ctx.db.insert("productSpecs", {
+    return await ctx.db.insert("products", {
       slug: args.slug,
       title: args.title,
       summary: args.summary,

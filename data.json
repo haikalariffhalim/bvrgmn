@@ -1,192 +1,201 @@
 {
-	"data":{
-    "brand":"Apple",
-    "model":"iPhone 12 Pro Max",
-    "thumbnail":"https://fdn2.gsmarena.com/vv/bigpic/apple-iphone-12-pro-max-.jpg",
-    "productImages":[
-        "https://fdn2.gsmarena.com/vv/pics/apple/apple-iphone-12-pro-max-1.jpg",
-        "https://fdn2.gsmarena.com/vv/pics/apple/apple-iphone-12-pro-max-2.jpg",
-        "https://fdn2.gsmarena.com/vv/pics/apple/apple-iphone-12-pro-max-3.jpg",
-        "https://fdn2.gsmarena.com/vv/pics/apple/apple-iphone-12-pro-max-4.jpg",
-        "https://fdn2.gsmarena.com/vv/pics/apple/apple-iphone-12-pro-max-6.jpg"],
-    "announced":" October 13, 2020",
-
-    "os":"iOS 14.1, up to iOS 17.1.1",
-    "variant":{
-        "storage":["128GB", "256GB", "512GB"],
-        "color":["Silver", "Gold", "Rose Gold"]
+  "brand": "Apple",
+  "model": "iPhone 12 Pro Max",
+  "slug": "apple-iphone-12-pro-max",
+  "announced": "October 13, 2020",
+  "operatingSystem": "iOS 14.1, up to iOS 17.1.1",
+  "thumbnail": "https://fdn2.gsmarena.com/vv/bigpic/apple-iphone-12-pro-max-.jpg",
+  "productImages": [
+    "https://fdn2.gsmarena.com/vv/pics/apple/apple-iphone-12-pro-max-1.jpg",
+    "https://fdn2.gsmarena.com/vv/pics/apple/apple-iphone-12-pro-max-2.jpg",
+    "https://fdn2.gsmarena.com/vv/pics/apple/apple-iphone-12-pro-max-3.jpg",
+    "https://fdn2.gsmarena.com/vv/pics/apple/apple-iphone-12-pro-max-4.jpg",
+    "https://fdn2.gsmarena.com/vv/pics/apple/apple-iphone-12-pro-max-6.jpg"
+  ],
+  "variants": {
+    "storage": ["128GB", "256GB", "512GB"],
+    "color": ["Silver", "Gold", "Rose Gold"],
+    "ram": ["6GB"]
+  },
+  "specifications": {
+    "connectivity": {
+      "network": {
+        "support": ["4G", "5G"],
+        "wifi": ["802.11ax"],
+        "bluetooth": ["5.2"]
+      },
+      "sim": ["Nano-SIM and eSIM or Dual SIM"]
     },
-    "specifications":{
-        "connectivity":{
-            "network":{
-                "support":["4G, 5G"],
-                "wifi":["802.11ax"],
-                "bluetooth":["5.2"]
-            },
-            "sim":["Nano-SIM and eSIM or Dual SIM"],
-        },
-        "body":{
-            "thickness":["7.4 mm"],
-            "dimensions":["160.8 x 78.1 x 7.4 mm (6.33 x 3.07 x 0.29 in)"],
-            "weight":"228 g",
-            "protection":["Glass front (Corning-made glass), glass back (Corning-made glass), stainless steel frame"],
-            "other":["IP68 dust/water resistant (up to 6m for 30 min)\nApple Pay (Visa, MasterCard, AMEX certified)"]
-        },
-
-        "screen":{
-            "size":["6.7 inches"],
-            "ratio":["~87.4% screen-to-body ratio"],
-            "display":{
-                "type":"Super Retina XDR OLED",
-                "features":["HDR10", "Dolby Vision"],
-                "brightness":["800 nits (HBM)", "1200 nits (peak)"],
-                "resolution":["1284 x 2778 pixels, 19.5:9 ratio (~458 ppi density)"],
-                "protection":["Ceramic Shield glass"]
-            }
-        },
-
-        "processor":{
-            "chipset":{
-                "name":"Apple A14 Bionic",
-                "size":"5 nm",
-                "cpu":{
-                    "cores":"Hexa-core",
-                    "frequency":"2x3.1 GHz Firestorm + 4x1.8 GHz Icestorm"
-                },
-                "gpu":{
-                    "cores":["4-core"],
-                    "type":["Apple GPU"]
-                }
-            }
-        },
-
-        "software":{
-            "OS":["iOS 14.1"],
-            "update":["iOS 17.1.1 (Dec 2025)"]
-        },
-
-        "Memory":{
-            "card_slot":["No"],
-            "internal":["128GB 6GB RAM, 256GB 6GB RAM, 512GB 6GB RAM"],
-            "other":["NVMe"]
-        },
-
-        "Camera":[
-            {
-                "Main":[
-                    {
-                        "wide":{
-                            "lens":{
-                                "type":"wide",
-                                "pixels":"12 MP",
-                                "aperture":"f/1.6",
-                                "focal-length":"26mm"
-                            },
-                            "sensor":{
-                                "size":"1.7µm",
-                                "pixels":"12 MP",
-                                "autofocus":"dual pixel PDAF",
-                                "stabilizer":"sensor-shift OIS"
-                            }
-                        }
-                    },
-                    {
-                        "telephoto":{
-                            "lens":{
-                                "type":"telephoto",
-                                "pixels":"12 MP",
-                                "aperture":"f/2.2",
-                                "focal-length":"65mm"
-                            },
-                            "sensor":{
-                                "size":"1.0µm",
-                                "pixels":"12 MP",
-                                "autofocus":"PDAF",
-                                "stabilizer":"OIS"
-                            }
-                        }
-                    },
-                    {
-                        "ultrawide":{
-                            "lens":{
-                                "type":"ultrawide",
-                                "pixels":"12 MP",
-                                "aperture":"f/2.4",
-                                "focal-length":"13mm"
-                            },
-                            "sensor":{
-                                "size":"1.2µm",
-                                "pixels":"12 MP",
-                                "autofocus":"PDAF",
-                                "stabilizer":"OIS"
-                            }
-                        }
-                    }
-                ],
-                "Selfie":[
-                    {
-                      "lens":{
-                      	"type":"ultrawide",
-                      	"pixels":"12 MP",
-                      	"aperture":"f/2.2",
-                      	"focal-length":"23mm"
-                      },
-                      "sensor":{
-                      	"size":"1.2µm",
-                      	"pixels":"12 MP",
-                      	"autofocus":"PDAF",
-                      	"stabilizer":"OIS"
-                      }
-                    }
-                ],
-                "Video":[
-                	"recording":{
-                        "resolution":["4K", "1080p"],
-                        "fps":["24/30/60fps", "30/60/120fps"],
-                        "stabilizer":["OIS", "gyro-EIS"]
-                    },
-                    "features":["dual-tone", "night-crawler-mode"]
-                ]
-            }
-        ]
-
+    "body": {
+      "thickness": "7.4 mm",
+      "dimensions": "160.8 x 78.1 x 7.4 mm (6.33 x 3.07 x 0.29 in)",
+      "weight": "228 g",
+      "protection": [
+        "Glass front (Corning-made glass)",
+        "glass back (Corning-made glass)",
+        "stainless steel frame"
+      ],
+      "waterResistance": "IP68 dust/water resistant (up to 6m for 30 min)",
+      "features": ["Apple Pay (Visa, MasterCard, AMEX certified)"]
     },
-
-        "Sound":{
-            "loudspeaker":["Yes, with stereo speakers"],
-            "3.5mm_jack":["No"],
-            "wlan":["Wi-Fi 802.11 a/b/g/n/ac/6, dual-band, hotspot" ],
-            "bluetooth":["5.0, A2DP, LE"],
-            "positioning":["GPS, GLONASS, GALILEO, QZSS"],
-            "nfc":["Yes"],
-            "radio":["No"]
-                {"key":"USB","val":["Lightning, USB 2.0"]}
-        ]},
-
-        {"title":"Features","specs":[{"key":"Sensors","val":["Face ID, accelerometer, gyro, proximity, compass, barometer"]},
-            {"key":"Other","val":["Ultra Wideband (UWB) support"]}
-        ]},
-
-        {"title":"Battery","specs":[
-            {"key":"Type","val":["Li-Ion 3687 mAh, non-removable (14.13 Wh)"]},
-            {"key":"Charging","val":["Wired, PD2.0, 50% in 30 min (advertised)\n15W wireless (MagSafe)\n7.5W wireless (Qi)"]}
-        ]},
-
-        {"title":"Misc","specs":[
-            {"key":"Colors","val":["Silver, Graphite, Gold, Pacific Blue"]},
-            {"key":"Models","val":["A2411, A2342, A2410, A2412, iPhone13,4"]},
-            {"key":"SAR EU","val":["0.99 W/kg (head)     0.99 W/kg (body)     "]},
-            {"key":"Price","val":["$ 474.63 / C$ 670.99 / £ 464.50 / € 559.00 / ₹ 116,910"]}
-        ]},
-
-        {"title":"Tests","specs":[
-            {"key":"Performance","val":["\nAnTuTu: 638584 (v8)\nGeekBench: 4240 (v5.1)\nGFXBench: 55fps (ES 3.1 onscreen)"]},
-            {"key":"Display","val":["\nContrast ratio: Infinite (nominal)"]},
-            {"key":"Camera","val":["\nPhoto / Video"]},
-            {"key":"Loudspeaker","val":["\n-23.8 LUFS (Very good)\n\n"]},
-            {"key":"Battery (old)","val":["\n\nEndurance rating 95h\n\n"]},
-            {"key":"Other","val":[""]
-            }]
+    "screen": {
+      "size": "6.7 inches",
+      "ratio": "~87.4% screen-to-body ratio",
+      "display": {
+        "type": "Super Retina XDR OLED",
+        "features": ["HDR10", "Dolby Vision"],
+        "brightness": ["800 nits (HBM)", "1200 nits (peak)"],
+        "resolution": "1284 x 2778 pixels, 19.5:9 ratio (~458 ppi density)",
+        "protection": ["Ceramic Shield glass"]
+      }
+    },
+    "processor": {
+      "chipset": {
+        "name": "Apple A14 Bionic",
+        "size": "5 nm",
+        "cpu": {
+          "cores": "Hexa-core",
+          "frequency": "2x3.1 GHz Firestorm + 4x1.8 GHz Icestorm"
+        },
+        "gpu": {
+          "cores": "4-core",
+          "type": "Apple GPU"
         }
-    ]
-}}
+      }
+    },
+    "software": {
+      "os": "iOS 14.1",
+      "updateVersion": "iOS 17.1.1"
+    },
+    "memory": {
+      "cardSlot": "No",
+      "internal": ["128GB 6GB RAM", "256GB 6GB RAM", "512GB 6GB RAM"],
+      "type": "NVMe"
+    },
+    "camera": {
+      "main": {
+        "wide": {
+          "lens": {
+            "type": "wide",
+            "pixels": "12 MP",
+            "aperture": "f/1.6",
+            "focalLength": "26mm"
+          },
+          "sensor": {
+            "size": "1.7µm",
+            "pixels": "12 MP",
+            "autofocus": "dual pixel PDAF",
+            "stabilizer": "sensor-shift OIS"
+          }
+        },
+        "telephoto": {
+          "lens": {
+            "type": "telephoto",
+            "pixels": "12 MP",
+            "aperture": "f/2.2",
+            "focalLength": "65mm"
+          },
+          "sensor": {
+            "size": "1.0µm",
+            "pixels": "12 MP",
+            "autofocus": "PDAF",
+            "stabilizer": "OIS"
+          }
+        },
+        "ultrawide": {
+          "lens": {
+            "type": "ultrawide",
+            "pixels": "12 MP",
+            "aperture": "f/2.4",
+            "focalLength": "13mm"
+          },
+          "sensor": {
+            "size": "1.2µm",
+            "pixels": "12 MP",
+            "autofocus": "PDAF",
+            "stabilizer": "OIS"
+          }
+        }
+      },
+      "selfie": {
+        "lens": {
+          "type": "wide",
+          "pixels": "12 MP",
+          "aperture": "f/2.2",
+          "focalLength": "23mm"
+        },
+        "sensor": {
+          "size": "1.2µm",
+          "pixels": "12 MP",
+          "autofocus": "PDAF",
+          "stabilizer": "OIS"
+        }
+      },
+      "mainVideo": {
+        "resolution": ["4K", "1080p"],
+        "fps": ["24/30/60fps", "30/60/120fps"],
+        "stabilizer": ["OIS", "gyro-EIS"]
+      },
+      "selfieVideo": {
+        "resolution": ["4K", "1080p"],
+        "fps": ["24/30/60fps", "30/60/120fps"],
+        "stabilizer": ["gyro-EIS"]
+      },
+      "features": [
+        "Dual-LED dual-tone flash",
+        "HDR (photo/panorama)",
+        "Night mode",
+        "Portrait mode"
+      ]
+    },
+    "sound": {
+      "loudspeaker": "Yes, with stereo speakers",
+      "jack35mm": "No",
+      "stereo": true
+    },
+    "connectivity2": {
+      "wlan": "Wi-Fi 802.11 a/b/g/n/ac/6, dual-band, hotspot",
+      "bluetooth": "5.0, A2DP, LE",
+      "nfc": "Yes",
+      "gps": "GPS, GLONASS, GALILEO, QZSS",
+      "usb": "Lightning, USB 2.0"
+    },
+    "features": {
+      "sensors": [
+        "Face ID",
+        "accelerometer",
+        "gyro",
+        "proximity",
+        "compass",
+        "barometer"
+      ],
+      "other": ["Ultra Wideband (UWB) support"]
+    },
+    "battery": {
+      "type": "Li-Ion",
+      "capacity": "3687 mAh, non-removable (14.13 Wh)",
+      "charging": {
+        "wired": "PD2.0, 50% in 30 min (advertised)",
+        "wireless": ["15W wireless (MagSafe)", "7.5W wireless (Qi)"]
+      },
+      "enduranceRating": 95
+    },
+    "misc": {
+      "colors": ["Silver", "Graphite", "Gold", "Pacific Blue"],
+      "models": ["A2411", "A2342", "A2410", "A2412", "iPhone13,4"],
+      "sarEU": "0.99 W/kg (head) / 0.99 W/kg (body)",
+      "price": "$474.63 / C$670.99 / £464.50 / €559.00 / ₹116,910"
+    },
+    "tests": {
+      "performance": [
+        "AnTuTu: 638584 (v8)",
+        "GeekBench: 4240 (v5.1)",
+        "GFXBench: 55fps (ES 3.1 onscreen)"
+      ],
+      "display": "Contrast ratio: Infinite (nominal)",
+      "camera": "Photo / Video capable",
+      "loudspeaker": "-23.8 LUFS (Very good)",
+      "battery": "Endurance rating 95h"
+    }
+  }
+}

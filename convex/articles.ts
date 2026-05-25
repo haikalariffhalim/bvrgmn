@@ -1,24 +1,25 @@
 import { query, mutation } from "./_generated/server";
 import { v, ConvexError } from "convex/values";
 
-export const updateArticle = mutation({
+export const createArticle = mutation({
   args: {
-    articleId: v.id("articles"),
-    title: v.optional(v.string()),
-    slug: v.optional(v.string()),
-    summary: v.optional(v.string()),
-    description: v.optional(v.string()),
-    content: v.optional(v.string()),
-    excerpt: v.optional(v.string()),
-    featuredImage: v.optional(v.id("_storage")),
-    categoryId: v.optional(v.id("category")),
-    tag: v.optional(v.array(v.id("tags"))),
+    title: v.string(),
+    slug: v.string(),
   },
-  returns: v.id("articles"),
+  returns: v.object({
+    id: v.id("articles"),
+    title: v.string(),
+    slug: v.string(),
+    summary: v.string(),
+    description: v.string(),
+    content: v.string(),
+    featuredImage: v.id("_storage"),
+    excerpt: v.string(),
+  }),
   handler: async (ctx, args) => {
-    const article = await ctx.db.get(args.articleId);
+    const articles = await ctx.db.get(args.slug);
 
-    if (!article) {
+    if (!articles) {
       throw new ConvexError("Article not found");
     }
 
@@ -34,10 +35,11 @@ export const updateArticle = mutation({
     if (args.featuredImage !== undefined)
       updates.featuredImage = args.featuredImage;
     if (args.categoryId !== undefined) updates.categoryId = args.categoryId;
-    if (args.tag !== undefined) updates.tag = args.tag;
+    if (args.tagId !== undefined) updates.tagId = args.tagId;
 
-    await ctx.db.patch(args.articleId, updates);
-    return args.articleId;
+    await ctx.db.patch(args.articles, updates);
+
+    return articles;
   },
 });
 
@@ -56,21 +58,25 @@ export const getArticleByAuthor = query({
   handler: async (ctx, { authorId }) => {
     return await ctx.db
       .query("articles")
-      .withIndex("by_authors", (q) => q.eq("authorId", authorId))
+      .withIndex("by_authorId", (q) => q.eq("authorId", authorId))
       .order("desc")
       .take(10);
   },
 });
 
 export const getArticleByCategories = query({
-  args: { categoryId: v.id("category") },
+  args: {
+    categoryId: v.id("category"),
+  },
   handler: async (ctx, { categoryId }) => {
     // Fetch all articles
     const allArticles = await ctx.db.query("articles").collect();
 
     // Filter articles by category
     return allArticles
-      .filter((article) => article.categoryId === categoryId)
+      .filter(
+        (article) => article.category && article.category.includes(categoryId),
+      )
       .slice(0, 5);
   },
 });
@@ -83,7 +89,7 @@ export const getArticleByTags = query({
 
     // Filter articles by tag
     return allArticles
-      .filter((article) => article.tag && article.tag.includes(tagId))
+      .filter((article) => article.tags && article.tags.includes(tagId))
       .slice(0, 5);
   },
 });

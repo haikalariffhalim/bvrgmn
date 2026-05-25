@@ -55,7 +55,7 @@ export const listAllCategories = query({
   },
 });
 
-export const createCategory = mutation({
+export const Category = mutation({
   args: {
     id: v.union(
       v.literal("tech"),
@@ -85,7 +85,7 @@ export const createCategory = mutation({
       .withIndex("by_slug", (q) => q.eq("slug", args.slug))
       .first();
     if (existing) {
-      throw new ConvexError("Category with this slug already exists");
+      throw new ConvexError("Category already exists");
     }
 
     const category = await ctx.db.insert("categories", {
@@ -103,16 +103,11 @@ export const updateCategory = mutation({
   args: {
     id: v.id("categories"),
     slug: v.optional(v.string()),
-    themes: v.optional(
-      v.union(
-        v.literal("theoVhon"),
-        v.literal("bobbyLee"),
-        v.literal("joeRogan"),
-        v.literal(""),
-        v.literal("AI"),
-        v.literal("culture"),
-        v.literal("life"),
-      ),
+    themes: v.union(
+      v.literal("TheoVhon"),
+      v.literal("BobbyLee"),
+      v.literal("JoeRogan"),
+      v.literal("BillBurr"),
     ),
     description: v.optional(v.string()),
   },

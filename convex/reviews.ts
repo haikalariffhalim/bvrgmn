@@ -9,7 +9,7 @@ export const addReview = mutation({
     content: v.string(),
     productSpec: v.id("productSpecs"),
     rating: v.number(),
-    authorId: v.id("authors"),
+    authorId: v.id("author"),
     postId: v.id("posts"),
     categoryId: v.id("category"),
     tagId: v.array(v.id("tags")),
@@ -40,7 +40,7 @@ export const addReview = mutation({
       productSpecId: args.productSpec,
       rating: args.rating,
       authorId: args.authorId,
-      post: args.postId,
+      postId: args.postId,
       categoryId: args.categoryId,
       tagId: args.tagId,
     });
@@ -83,15 +83,17 @@ export const updateReview = mutation({
   },
 });
 
-export const getReviewsByProductSpec = query({
-  args: { productSpecId: v.id("productSpecs") },
-  handler: async (ctx, { productSpecId }) => {
-    const reviews = await ctx.db
+export const getReviewByProductId = query({
+  args: {
+    productId: v.id("products"),
+  },
+  handler: async (ctx, { productId }) => {
+    const review = await ctx.db
       .query("reviews")
-      .withIndex("by_product_spec", (q) => q.eq("productSpec", productSpecId))
+      .withIndex("by_products", (q) => q.eq("productId", productId))
       .collect();
 
-    return reviews.sort(
+    return review.sort(
       (a, b) => (b._creationTime || 0) - (a._creationTime || 0),
     );
   },

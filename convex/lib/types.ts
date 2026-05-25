@@ -61,7 +61,11 @@ export interface PhoneVariant {
 
 export interface PhoneSpecifications {
   connectivity: {
-    network: { support: string[]; wifi: string[]; bluetooth: string[] };
+    network: {
+      support: string[];
+      wifi: string[];
+      bluetooth: string[];
+    };
     sim: string[];
   };
   body: {
