@@ -12,6 +12,7 @@ import type * as articles from "../articles.js";
 import type * as authors from "../authors.js";
 import type * as badges from "../badges.js";
 import type * as posts from "../posts.js";
+import type * as thumbnails from "../thumbnails.js";
 
 import type {
   ApiFromModules,
@@ -24,6 +25,7 @@ declare const fullApi: ApiFromModules<{
   authors: typeof authors;
   badges: typeof badges;
   posts: typeof posts;
+  thumbnails: typeof thumbnails;
 }>;
 
 /**

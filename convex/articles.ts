@@ -1,52 +1,90 @@
 import { query, mutation } from "./_generated/server";
 import { v, ConvexError } from "convex/values";
 
-const slugify = (s: string) =>
-  s
-    .trim()
-    .toLowerCase()
-    .replace(/[^a-z0-9]+/g, "-")
-    .replace(/(^-|-$)/g, "");
-
-export const createArticle = mutation({
+export const updateArticle = mutation({
   args: {
-    title: v.string(),
-    summary: v.string(),
-    description: v.string(),
-    slug: v.id("slug"),
-    publishedAt: v.string(),
-    updatedAt: v.string(),
-    featuredImage: v.id("_storage"),
-    excerpt: v.string(),
-    category: v.array(v.id("categories")),
-    tags: v.array(v.id("tags")),
-    authorName: v.string(),
+    articleId: v.id("articles"),
+    title: v.optional(v.string()),
+    slug: v.optional(v.string()),
+    summary: v.optional(v.string()),
+    description: v.optional(v.string()),
+    content: v.optional(v.string()),
+    excerpt: v.optional(v.string()),
+    featuredImage: v.optional(v.id("_storage")),
+    categoryId: v.optional(v.id("category")),
+    tag: v.optional(v.array(v.id("tags"))),
   },
   returns: v.id("articles"),
   handler: async (ctx, args) => {
-    const slug = slugify(args.slug || args.title);
+    const article = await ctx.db.get(args.articleId);
 
-    const existing = await ctx.db
+    if (!article) {
+      throw new ConvexError("Article not found");
+    }
+
+    const updates: Record<string, any> = {};
+
+    // Update only provided fields
+    if (args.title !== undefined) updates.title = args.title;
+    if (args.slug !== undefined) updates.slug = args.slug;
+    if (args.summary !== undefined) updates.summary = args.summary;
+    if (args.description !== undefined) updates.description = args.description;
+    if (args.content !== undefined) updates.content = args.content;
+    if (args.excerpt !== undefined) updates.excerpt = args.excerpt;
+    if (args.featuredImage !== undefined)
+      updates.featuredImage = args.featuredImage;
+    if (args.categoryId !== undefined) updates.categoryId = args.categoryId;
+    if (args.tag !== undefined) updates.tag = args.tag;
+
+    await ctx.db.patch(args.articleId, updates);
+    return args.articleId;
+  },
+});
+
+export const getArticlesBySlug = query({
+  args: { slug: v.string() },
+  handler: async (ctx, { slug }) => {
+    return await ctx.db
       .query("articles")
       .withIndex("by_slug", (q) => q.eq("slug", slug))
-      .first();
-    if (existing) throw new ConvexError("Article slug already exists");
+      .collect();
+  },
+});
 
-    const articleId = await ctx.db.insert("articles", {
-      title: args.title,
-      summary: args.summary,
-      description: args.description,
-      slug,
-      publishedAt: args.publishedAt, // string per your args
-      updatedAt: args.updatedAt,
-      featuredImage: args.featuredImage,
-      excerpt: args.excerpt,
-      category: args.category,
-      tags: args.tags,
-      authorName: args.authorName,
-      createdAt: Date.now(),
-    });
-    return articleId;
+export const getArticleByAuthor = query({
+  args: { authorId: v.id("authors") },
+  handler: async (ctx, { authorId }) => {
+    return await ctx.db
+      .query("articles")
+      .withIndex("by_authors", (q) => q.eq("authorId", authorId))
+      .order("desc")
+      .take(10);
+  },
+});
+
+export const getArticleByCategories = query({
+  args: { categoryId: v.id("category") },
+  handler: async (ctx, { categoryId }) => {
+    // Fetch all articles
+    const allArticles = await ctx.db.query("articles").collect();
+
+    // Filter articles by category
+    return allArticles
+      .filter((article) => article.categoryId === categoryId)
+      .slice(0, 5);
+  },
+});
+
+export const getArticleByTags = query({
+  args: { tagId: v.id("tags") },
+  handler: async (ctx, { tagId }) => {
+    // Fetch all articles
+    const allArticles = await ctx.db.query("articles").collect();
+
+    // Filter articles by tag
+    return allArticles
+      .filter((article) => article.tag && article.tag.includes(tagId))
+      .slice(0, 5);
   },
 });
 
@@ -57,16 +95,5 @@ export const getArticleBySlug = query({
       .query("articles")
       .withIndex("by_slug", (q) => q.eq("slug", slug))
       .unique();
-  },
-});
-
-export const getArticleByLatest = query({
-  args: {},
-  handler: async (ctx) => {
-    return await ctx.db
-      .query("articles")
-      .withIndex("by_creation_time")
-      .order("desc")
-      .collect();
   },
 });

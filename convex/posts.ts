@@ -1,43 +1,54 @@
 import { mutation, query } from "./_generated/server";
-import { v } from "convex/values";
+import { v, ConvexError } from "convex/values";
 
-export const listLatestPosts = query({
-  args: {},
-  handler: async (ctx) => {
-    return await ctx.db
-      .query("posts")
-      .withIndex("by_creation_time")
-      .order("desc")
+export const getMostPopularPostsByAuthor = query({
+  args: {
+    authorId: v.id("authors"),
+    includePublished: v.optional(v.boolean()),
+  },
+  handler: async (ctx, { authorId }) => {
+    // Get articles by author
+    const articles = await ctx.db
+      .query("articles")
+      .withIndex("by_author_published", (q) => q.eq("authorId", authorId))
       .collect();
+
+    // Get reviews by author
+    const reviews = await ctx.db
+      .query("reviews")
+      .withIndex("by_author_published", (q) => q.eq("authorId", authorId))
+      .collect();
+
+    // Combine all posts
+    let allPosts = [
+      ...articles.map((a) => ({ ...a, postType: "article" })),
+      ...reviews.map((r) => ({ ...r, postType: "review" })),
+    ];
+
+    // Sort by creation time (latest first)
+    return allPosts.sort(
+      (a, b) => (b._creationTime || 0) - (a._creationTime || 0),
+    );
   },
 });
 
-export const add = mutation({
-  args: { text: v.string() },
-  handler: async (ctx, args) => {
-    return await ctx.db.insert("posts", {
-      text: args.text,
-      completed: false,
-    });
+export const incrementPostViews = mutation({
+  args: {
+    postId: v.union(v.id("articles"), v.id("reviews")),
+    postType: v.union(v.literal("article"), v.literal("review")),
   },
-});
+  handler: async (ctx, { postId, postType }) => {
+    let table: "articles" | "reviews" = "articles";
+    if (postType === "review") table = "reviews";
 
-export const toggle = mutation({
-  args: { id: v.id("posts") },
-  handler: async (ctx, args) => {
-    const posts = await ctx.db.get(args.id);
-    if (!posts) {
-      throw new Error("Post not found");
+    const post = await ctx.db.get(postId);
+    if (!post) {
+      throw new ConvexError("Post not found");
     }
-    return await ctx.db.patch(args.id, {
-      completed: !posts.completed,
-    });
-  },
-});
 
-export const remove = mutation({
-  args: { id: v.id("posts") },
-  handler: async (ctx, args) => {
-    return await ctx.db.delete(args.id);
+    // Just return the postId (database handles system fields)
+    // No updates needed since we're just tracking views
+
+    return postId;
   },
 });
