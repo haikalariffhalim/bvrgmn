@@ -2,14 +2,6 @@ import { v, ConvexError } from "convex/values";
 import { query, mutation } from "./_generated/server";
 import { paginationOptsValidator } from "convex/server";
 
-export const getAllCategories = query({
-  args: {},
-  handler: async (ctx) => {
-    const categories = await ctx.db.query("categories").collect();
-    return categories;
-  },
-});
-
 export const getCategoryById = query({
   args: {
     categoryId: v.id("categories"),
