@@ -1,7 +1,3 @@
-/**
- * Phone Specifications Type Definitions
- */
-
 export interface CameraLens {
   type: string;
   pixels: string;
